@@ -163,7 +163,6 @@ def test_batch_prefill_with_paged_kv_cache(
     kv_init_max,
     seed
 ):
-    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~!@!!!!!!!!!!!!!!!!!!!!")
     if seed is not None:
         torch.manual_seed(seed)
  
@@ -249,7 +248,6 @@ def test_batch_prefill_with_paged_kv_cache(
                 o, _ = wrapper.run(q, kv_data, return_lse=True)
             else:
                 o = wrapper.run(q, kv_data)
-        print("dfasjflksdjklj~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
            
         # k_cache =    kv_data[:,0,:,:,:],#k_buffer
         # v_cache =    kv_data[:,1,:,:,:],#v_buffer
@@ -270,10 +268,6 @@ def test_batch_prefill_with_paged_kv_cache(
         #     v_unpad[kv_indptr[i] : kv_indptr[i + 1]] = v_buffer[kv_indices[kv_indptr[i]:kv_indptr[i + 1]]]
         #     return k_unpad, v_unpad
         # k, v = flash_attn_param_gen_from_extend(kv_indptr_gpu, kv_indices_gpu, k_cache, v_cache)
-        # print(kv_indptr_gpu)
-        # print(k.shape)
-        # print(v.shape)
-        # print(q.shape)
         o_ck_flash_attn = aiter.flash_attn_varlen_func(
             q,
             k_cache,
